@@ -1,0 +1,39 @@
+function palindrome(str) {
+  let letterArr = str.split("");
+  let filteredArr = letterArr.filter(x => /[A-Za-z0-9]/.test(x));
+  let lowerCaseArr = filteredArr.map(y => y.toLowerCase());
+  let oddMidPoint = Math.round(lowerCaseArr.length / 2) - 1;
+  let evenMidPoint = lowerCaseArr.length / 2;
+  if (lowerCaseArr.length % 2 === 1) {
+    let secondHalfOdd = 
+    lowerCaseArr.splice(oddMidPoint);
+    secondHalfOdd.shift();
+    secondHalfOdd.reverse();
+    let compareArrays = (a, b) => {
+      for (let i = 0; i < a.length; i++) {
+        if (a[i] !== b[i]) {
+          return false;
+        }
+      }
+      return true;
+    }
+    return compareArrays(lowerCaseArr, secondHalfOdd);
+} else {
+   let secondHalfEven =
+   lowerCaseArr.splice(evenMidPoint);
+   secondHalfEven.reverse();
+   let compareArrays = (a, b) => {
+      for (let i = 0; i < a.length; i++) {
+        if (a[i] !== b[i]) {
+          return false;
+        }
+      }
+      return true;
+    }
+   return compareArrays(lowerCaseArr, secondHalfEven);
+ }
+}
+
+
+palindrome("eye");
+console.log(palindrome("0_0 (: /-\ :) 0-0"))

@@ -1,0 +1,26 @@
+function rot13(str) {
+  let sepArr = str.split('');
+  let finalArr = [];
+  function cipherMeDaddy(character) {
+    let regex = /[A-Z]/
+    let alphaArr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O'] 
+    for (let i = 0; i < alphaArr.length; i++) {
+    if (alphaArr[i] === character) {
+      if (alphaArr[i - 13] == undefined) {
+        return alphaArr[i + 13]
+      } else {
+        return alphaArr[i - 13];
+      }
+    }
+  if (!regex.test(character)) {
+    return character;
+  }
+    }
+  };
+  for (let j = 0; j < sepArr.length; j++) {
+    finalArr.push(cipherMeDaddy(sepArr[j]));
+  } return finalArr.join('');
+} 
+
+rot13("SERR PBQR PNZC");
+console.log(rot13("SERR PBQR PNZC"))

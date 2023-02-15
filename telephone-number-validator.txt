@@ -1,0 +1,44 @@
+function telephoneCheck(str) {
+ let regex = /[^0-9\s()-]/;
+ function numberCount(array) {
+   let numCount = 0;
+   let numArray = [];
+   for (let j = 0; j < array.length; j++) {
+     numArray.push(parseInt(array[j]));
+   } for (let k = 0; k < numArray.length; k++) {
+     if (Number.isInteger(numArray[k])) {
+       numCount++
+     }
+   } return numCount;
+ }
+ if (regex.test(str) === true) {
+   return false;
+ } else {
+   let arr = str.split('');
+   if (arr.length < 10 || arr.length > 16) {
+     return false;
+   } else {
+     for (let i = 0; i < arr.length; i++) {
+       if (arr[i] === '(' && arr[i + 4] !== ')') {
+         return false;
+       } if (arr[i] === ')' && arr[i - 4] !== '(') {
+         return false; }
+         if (arr[i] === '-' && arr[i + 3] === '-') {
+           return false;
+         }
+       } 
+       if (arr[1] === ' ' && arr[0] !== '1') {
+         return false;
+       } if (numberCount(arr) > 10 && arr[0] !== '1') {
+         return false;
+       } if (numberCount(arr) > 11) {
+         return false;
+       } else {
+         return true;
+       }
+   } 
+ }
+}
+
+telephoneCheck("555-555-5555");
+console.log(telephoneCheck("1 456 789 4444"));

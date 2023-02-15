@@ -1,0 +1,140 @@
+function checkCashRegister(price, cash, cid) {
+  let changeReq = cash - price;
+  let cashTotal = cid[0][1] + cid[1][1] + cid[2][1] + cid[3][1] + cid[4][1] + cid[5][1] + cid[6][1] + cid[7][1] + cid[8][1];
+  let roundedTotal = Math.round(100 * cashTotal) / 100;
+  let moneyBack = [];
+  if (roundedTotal === changeReq) {
+    return {status: "CLOSED", change: cid};
+  } if (roundedTotal < changeReq) {
+    return {status: "INSUFFICIENT_FUNDS", change: []};
+  } if (roundedTotal > changeReq) {
+  if (changeReq / 100 >= 1) {
+    let billTotal = Math.floor(changeReq / 100) * 100;
+    if (billTotal < cid[8][1]) {
+      moneyBack.push(["ONE HUNDRED", billTotal]);
+      changeReq -= billTotal;
+    } else {
+      moneyBack.push(["ONE HUNDRED", cid[8][1]]);
+      changeReq -= cid[8][1];
+    } 
+  } if (changeReq === 0) {
+    return {status: "OPEN", change: moneyBack};
+  }
+  if (changeReq / 20 >= 1) {
+    let billTotal = Math.floor(changeReq / 20) * 20;
+    if (billTotal < cid[7][1]) {
+      moneyBack.push(["TWENTY", billTotal]);
+      changeReq -= billTotal;
+    } else {
+      moneyBack.push(["TWENTY", cid[7][1]]);
+      changeReq -= cid[7][1];
+    } 
+  } if (changeReq === 0) {
+    return {status: "OPEN", change: moneyBack};
+  }
+  if (changeReq / 10 >= 1) {
+    let billTotal = Math.floor(changeReq / 10) * 10;
+    if (billTotal < cid[6][1]) {
+      moneyBack.push(["TEN", billTotal]);
+      changeReq -= billTotal;
+    } else {
+      moneyBack.push(["TEN", cid[6][1]]);
+      changeReq -= cid[6][1];
+    } 
+  } if (changeReq === 0) {
+    return {status: "OPEN", change: moneyBack};
+  }
+  if (changeReq / 5 >= 1) {
+    let billTotal = Math.floor(changeReq / 5) * 5;
+    if (billTotal < cid[5][1]) {
+      moneyBack.push(["FIVE", billTotal]);
+      changeReq -= billTotal;
+    } else {
+      moneyBack.push(["FIVE", cid[5][1]]);
+      changeReq -= cid[5][1];
+    } 
+  } if (changeReq === 0) {
+    return {status: "OPEN", change: moneyBack};
+  }
+  if (changeReq / 1 >= 1) {
+    let billTotal = Math.floor(changeReq / 1) * 1;
+    if (billTotal < cid[4][1]) {
+      moneyBack.push(["ONE", billTotal]);
+      changeReq -= billTotal;
+    } else {
+      moneyBack.push(["ONE", cid[4][1]]);
+      changeReq -= cid[4][1];
+    } 
+  } if (changeReq === 0) {
+    return {status: "OPEN", change: moneyBack};
+  }
+  if (changeReq / 1 >= 1) {
+    let billTotal = Math.floor(changeReq / 1) * 1;
+    if (billTotal < cid[4][1]) {
+      moneyBack.push(["ONE", billTotal]);
+      changeReq -= billTotal;
+    } else {
+      moneyBack.push(["ONE", cid[4][1]]);
+      changeReq -= cid[4][1];
+    } 
+  } if (changeReq === 0) {
+    return {status: "OPEN", change: moneyBack};
+  }
+  if (changeReq / .25 >= 1) {
+    let billTotal = Math.floor(changeReq / .25) * .25;
+    if (billTotal < cid[3][1]) {
+      moneyBack.push(["QUARTER", billTotal]);
+      changeReq -= billTotal;
+    } else {
+      moneyBack.push(["QUARTER", cid[3][1]]);
+      changeReq -= cid[3][1];
+    } 
+  } if (changeReq === 0) {
+    return {status: "OPEN", change: moneyBack};
+  }
+  if (changeReq / .1 >= 1) {
+    let billTotal = Math.floor(changeReq / .1) * .1;
+    if (billTotal < cid[2][1]) {
+      moneyBack.push(["DIME", billTotal]);
+      changeReq -= billTotal;
+    } else {
+      moneyBack.push(["DIME", cid[2][1]]);
+      changeReq -= cid[2][1];
+    } 
+  } if (changeReq === 0) {
+    return {status: "OPEN", change: moneyBack};
+  }
+  if (changeReq / .05 >= 1) {
+    let billTotal = Math.floor(changeReq / .05) * .05;
+    if (billTotal < cid[1][1]) {
+      moneyBack.push(["NICKEL", billTotal]);
+      changeReq -= billTotal;
+    } else {
+      moneyBack.push(["NICKEL", cid[1][1]]);
+      changeReq -= cid[1][1];
+    }
+  } if (changeReq === 0) {
+    return {status: "OPEN", change: moneyBack};
+  }
+  if (changeReq / .01 >= 1) {
+    let billTotal = (Math.floor(changeReq / .01) * .01) + .01;
+    let roundedChange = Math.round(changeReq * 100) / 100;
+    if (billTotal < cid[0][1]) {
+      moneyBack.push(["PENNY", billTotal]);
+      roundedChange -= billTotal;
+    } else {
+      moneyBack.push(["PENNY", cid[0][1]]);
+      roundedChange -= cid[0][1];
+    } if (roundedChange === 0) {
+      return {status: "OPEN", change: moneyBack};
+    }
+  } if (changeReq === 0) {
+    return {status: "OPEN", change: moneyBack};
+  } if (changeReq !== 0) {
+    return {status: "INSUFFICIENT_FUNDS", change: []};
+  } 
+  }
+}
+
+checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
+console.log(checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]));

@@ -1,0 +1,160 @@
+function convertToRoman(num) {
+  const thousand = "M",
+        nineHundo = "CM",
+        fiveHundo = "D",
+        fourHundo = "CD",
+        hundo = "C",
+        ninety = "XC",
+        fifty = "L",
+        forty = "XL",
+        ten = "X",
+        nine = "IX",
+        five = "V",
+        four = "IV",
+        one = "I";
+   let  finalNumeral = [],
+        remainder = 0;
+  function giveMeNumerals(numeral, numb) {
+    return numeral.repeat(numb);
+  };
+  if (num >= 1000) {
+    remainder = num % 1000;
+    let number = Math.floor(num / 1000);
+    finalNumeral.push(giveMeNumerals(thousand, number));
+  } if (num < 1000 && num >= 900 || remainder >= 900) {
+      if (num < 1000 && num >= 900) {
+       remainder = num % 900;
+       let number = Math.floor(num / 900);
+       finalNumeral.push(giveMeNumerals(nineHundo, number));
+      } if (remainder >= 900) {
+        let number = Math.floor(remainder / 900);
+        remainder %= 900;
+        finalNumeral.push(giveMeNumerals(nineHundo, number));
+      }
+  } if (num < 900 && num >= 500 || remainder >= 500) {
+       if (num < 900 && num >= 500) {
+       remainder = num % 500;
+       let number = Math.floor(num / 500);
+       finalNumeral.push(giveMeNumerals(fiveHundo, number));
+      } if (remainder >= 500) {
+        let number = Math.floor(remainder / 500);
+        remainder %= 500;
+        finalNumeral.push(giveMeNumerals(fiveHundo, number));
+  } 
+  }
+  if (num < 500 && num >= 400 || remainder >= 400) {
+       if (num < 500 && num >= 400) {
+       remainder = num % 400;
+       let number = Math.floor(num / 400);
+       finalNumeral.push(giveMeNumerals(fourHundo, number));
+      } if (remainder >= 400) {
+        let number = Math.floor(remainder / 400);
+        remainder %= 400;
+        finalNumeral.push(giveMeNumerals(fourHundo, number));
+  } 
+  }
+  if (num < 400 && num >= 100 || remainder >= 100) {
+       if (num < 400 && num >= 100) {
+       remainder = num % 100;
+       let number = Math.floor(num / 100);
+       finalNumeral.push(giveMeNumerals(hundo, number));
+      } if (remainder >= 100) {
+        let number = Math.floor(remainder / 100);
+        remainder %= 100;
+        finalNumeral.push(giveMeNumerals(hundo, number));
+  }
+} 
+if (num < 100 && num >= 90 || remainder >= 90) {
+       if (num < 100 && num >= 90) {
+       remainder = num % 90;
+       let number = Math.floor(num / 90);
+       finalNumeral.push(giveMeNumerals(ninety, number));
+      } if (remainder >= 90) {
+        let number = Math.floor(remainder / 90);
+        remainder %= 90;
+        finalNumeral.push(giveMeNumerals(ninety, number));
+  }
+}
+if (num < 90 && num >= 50 || remainder >= 50) {
+       if (num < 90 && num >= 50) {
+       remainder = num % 50;
+       let number = Math.floor(num / 50);
+       finalNumeral.push(giveMeNumerals(fifty, number));
+      } if (remainder >= 50) {
+        let number = Math.floor(remainder / 50);
+        remainder %= 50;
+        finalNumeral.push(giveMeNumerals(fifty, number));
+  }
+}
+if (num < 50 && num >= 40 || remainder >= 40) {
+       if (num < 50 && num >= 40) {
+       remainder = num % 40;
+       let number = Math.floor(num / 40);
+       finalNumeral.push(giveMeNumerals(forty, number));
+      } if (remainder >= 40) {
+        let number = Math.floor(remainder / 40);
+        remainder %= 40;
+        finalNumeral.push(giveMeNumerals(forty, number));
+  }
+}
+if (num < 40 && num >= 10 || remainder >= 10) {
+       if (num < 40 && num >= 10) {
+       remainder = num % 10;
+       let number = Math.floor(num / 10);
+       finalNumeral.push(giveMeNumerals(ten, number));
+      } if (remainder >= 10) {
+        let number = Math.floor(remainder / 10);
+        remainder %= 10;
+        finalNumeral.push(giveMeNumerals(ten, number));
+  }
+}
+if (num < 10 && num >= 9 || remainder >= 9) {
+    if (num < 10 && num >= 9) {
+       remainder = num % 9;
+       let number = Math.floor(num / 9);
+       finalNumeral.push(giveMeNumerals(nine, number));
+      } if (remainder >= 9) {
+        let number = Math.floor(remainder / 9);
+        remainder %= 9;
+        finalNumeral.push(giveMeNumerals(nine, number));
+  }
+  }
+if (num < 9 && num >= 5 || remainder >= 5) {
+       if (num < 9 && num >= 5) {
+       remainder = num % 5;
+       let number = Math.floor(num / 5);
+       finalNumeral.push(giveMeNumerals(five, number));
+      } if (remainder >= 5) {
+        let number = Math.floor(remainder / 5);
+        remainder %= 5;
+        finalNumeral.push(giveMeNumerals(five, number));
+  }
+}
+if (num < 5 && num >= 4 || remainder >= 4) {
+    if (num < 5 && num >= 4) {
+       remainder = num % 4;
+       let number = Math.floor(num / 4);
+       finalNumeral.push(giveMeNumerals(four, number));
+      } if (remainder >= 4) {
+        let number = Math.floor(remainder / 4);
+        remainder %= 4;
+        finalNumeral.push(giveMeNumerals(four, number));
+  }
+  }
+if (num < 4 && num >= 1 || remainder >= 1) {
+       if (num < 4 && num >= 1) {
+       remainder = num % 1;
+       let number = Math.floor(num / 1);
+       finalNumeral.push(giveMeNumerals(one, number));
+      } if (remainder >= 1) {
+        let number = Math.floor(remainder / 1);
+        remainder %= 1;
+        finalNumeral.push(giveMeNumerals(one, number));
+  }
+}
+let romNum = finalNumeral.toString();
+return romNum.replaceAll(",", "");
+}
+
+convertToRoman(36);
+console.log(convertToRoman(29))
